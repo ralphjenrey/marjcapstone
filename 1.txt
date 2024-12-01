@@ -1,0 +1,362 @@
+<!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+
+       <?php $sql=mysqli_query($con,"select * from tblpage where PageType='aboutus'");
+$cnt=1;
+while($data=mysqli_fetch_array($sql)){
+?>                 
+                        <h1 class="mb-4"><?php echo $data['PageTitle']?></h1>
+                        <p><?php echo $data['PageDescription']?></p>
+       <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+          <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+
+
+        <ENROLLEMENT>
+        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control border-0" id="cname" name="cname" placeholder="Child Name" required>
+                                                <label for="cname">Age</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+                                         <select class="form-control" id="agegroup" name="agegroup"  required>
+<option value="">Select</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+
+
+
+
+<CONTAINER>
+<?php include_once('includes/config.php'); 
+if (isset($_POST['submit'])) {
+    // Initialize variables
+    $fatherName = $_POST['fathername'];
+    $motherName = $_POST['mothername'];
+    $parentMobNo = $_POST['parentmobno'];
+    $parentEmail = $_POST['parentemail'];
+    $childName = $_POST['cname'];
+    $ageGroup = $_POST['agegroup'];
+    $enrollProgram = $_POST['erollprogram'];
+    $message = $_POST['message'];
+
+    // Example: You can add your database logic here
+    // For example: Save the data into a database
+
+    // Feedback message (can be a success or error message)
+    $feedbackMessage = "Enrollment submitted successfully!";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@600&family=Lobster+Two:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+    /* Other styles... */
+
+    .btn-custom {
+        background-color: #007bff; /* Green background color */
+        color: white; /* White text color */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    .btn-custom:hover {
+        background-color: #0d6efd; /* Darker green on hover */
+        color: white; /* White text color */
+
+
+    }
+
+    /* Editable Container Styles */
+    #enrollment-container {
+        background: linear-gradient(135deg, silver, white); /* Gradient background */
+        padding: 30px; /* Change padding here */
+        border-radius: 15px; /* Change border radius here */
+        max-width: 800px; /* Set max width */
+        margin: auto; /* Center align */
+    }
+
+    h1 {
+        font-family: Roboto Mono, monospace;
+        color: white; /* Header color */
+    }
+
+    label {
+        color: gray; /* Label color */
+    }
+</style>
+
+</head>
+
+<body>
+    <?php include_once('includes/header.php');?>
+
+    <!-- Page Header Start -->
+    <div class="container-xxl py-5 page-header position-relative mb-5">
+        <div class="container py-5">
+            <h1 class="display-2 text-white animated mb-4">Enrollment</h1>
+            <nav aria-label="breadcrumb animated">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Enrollment</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Editable Container Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="bg-light rounded p-5" id="enrollment-container">
+                <div class="row g-0">
+                    <div class="col-lg-12 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="h-100 d-flex flex-column justify-content-center">
+                            <h1 class="mb-4">Enrollment Form</h1>
+                            <?php if (isset($feedbackMessage)) : ?>
+                                <div class="alert alert-success"><?php echo $feedbackMessage; ?></div>
+                            <?php endif; ?>
+                            <form method="post">
+                                <div class="row g-3">
+                                    <div class="col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="fathername" name="fathername" placeholder="Father's Name" required>
+                                            <label for="fathername">First Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="mothername" name="mothername" placeholder="Mother's Name" required>
+                                            <label for="mothername">Last Name</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="parentmobno" name="parentmobno" placeholder="Parent Mobile No." required>
+                                            <label for="parentmobno">Phone Mobile No.</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="parentemail" name="parentemail" placeholder="Parent Email" required>
+                                            <label for="parentemail">Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="cname" name="cname" placeholder="Child's Name" required>
+                                            <label for="cname">Age</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" id="agegroup" name="agegroup" required>
+                                                <option value="">Sex</option>
+                                                <?php for($i=1; $i<=30; $i++): ?>
+                                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                <?php endfor; ?>
+                                            </select>
+                                            <label for="agegroup">Sex</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-floating">
+                                            <select class="form-control" id="erollprogram" name="erollprogram" required>
+                                                <option value="">Select a Program</option>
+                                                <option value="Information Technology">Information Technology</option>
+                                                <!-- Add more programs as needed -->
+                                            </select>
+                                            <label for="erollprogram">Program to Enroll</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="message" name="message" placeholder="Leave a message" style="height: 100px" required></textarea>
+                                            <label for="message">Message</label>
+                                        </div>
+                                    </div>
+                                    <!-- Replace this button -->
+<!-- <button class="btn btn-primary w-100 py-3" type="submit" name="submit">Submit</button> -->
+
+<!-- With this button -->
+<button class="btn btn-custom w-100 py-3" type="submit" name="submit">Submit</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Editable Container End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
+
+
+-----------------------------------------------------------------------------
+
+
+<?php 
+session_start();
+include('../includes/config.php');
+
+if(isset($_POST['login'])) {
+    $uname = $_POST['username'];
+    $Password = md5($_POST['inputpwd']);
+    $query = mysqli_query($con, "SELECT ID, AdminuserName, UserType FROM tbladmin WHERE AdminuserName='$uname' && Password='$Password'");
+    $ret = mysqli_fetch_array($query);
+    if($ret > 0) {
+        $_SESSION['aid'] = $ret['ID'];
+        $_SESSION['uname'] = $ret['AdminuserName'];
+        $_SESSION['utype'] = $ret['UserType'];
+        header('location:dashboard.php');
+    } else {
+        echo "<script>alert('Invalid Details.');</script>";          
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600,700&display=fallback">
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <style>
+        body {
+            background-color: #e9eff1;
+        }
+        .login-box {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .login-box h1 {
+            text-align: center;
+            color: #1877f2; /* Facebook blue */
+        }
+        .btn-primary {
+            background-color: #1877f2; /* Facebook blue */
+            border-color: #1877f2; /* Facebook blue */
+        }
+        .btn-primary:hover {
+            background-color: #166fe5; /* Darker blue on hover */
+        }
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .input-group-text {
+            background-color: #f0f2f5;
+        }
+        .login-box-msg {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <h1><b>Registrar</b> | CEC</h1>
+    <div class="card-body">
+        <p class="login-box-msg">Sign-In to your Account</p>
+        <form method="post">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Username" name="username" required>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password" name="inputpwd" required>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block" name="login">Sign In</button>
+                </div>
+            </div>
+        </form>
+        <p class="mb-1">
+            <a href="password-recovery.php">I forgot my password</a>
+        </p>
+    </div>
+</div>
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
+</body>
+</html>

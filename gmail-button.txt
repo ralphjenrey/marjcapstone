@@ -1,0 +1,23 @@
+       /* Style for the back button */
+      .back-button {
+         margin-top: 10px;
+         padding: 12px; /* Increased padding for better visibility */
+         width: 25%; /* Width set for centering */
+         background-color: #00A400;
+         color: white;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+         display: block; /* Changed to block for centering */
+         margin-left: auto; /* Centering */
+         margin-right: auto; /* Centering */
+         font-size: 16px; /* Increased font size for back button */
+         text-align: center; /* Center text */
+         text-decoration: none; /* Remove underline from link */
+      } 
+
+      .back-button:hover {
+         background-color: gray;
+      }
+
+               <a href="../admin/status-accepted.php" class="back-button">Back</a>
