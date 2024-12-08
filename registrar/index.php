@@ -2,25 +2,35 @@
 session_start();
 include('../includes/config.php');
 
-if(isset($_POST['login']))
-  {
-    $uname=$_POST['username'];
-    $Password=md5($_POST['inputpwd']);
-    $query=mysqli_query($con,"select ID,AdminuserName,UserType from tbladmin where  AdminuserName='$uname' && Password='$Password' ");
-    $ret=mysqli_fetch_array($query);
-    if($ret>0){
-      $_SESSION['aid']=$ret['ID'];
-      $_SESSION['uname']=$ret['AdminuserName'];
-      $_SESSION['utype']=$ret['UserType'];
-     header('location: dashboard.php');
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Get registrar details
+    $query = mysqli_query($con, "SELECT id, email, password, status, firstName, lastName FROM tblregistrar WHERE email='$email'");
+    $registrar = mysqli_fetch_array($query);
+
+    // Verify credentials
+    if ($registrar && password_verify($password, $registrar['password'])) {
+        // Check if account is active
+        if ($registrar['status'] == 'active') {
+            $_SESSION['rid'] = $registrar['id'];
+            $_SESSION['email'] = $registrar['email'];
+            $_SESSION['fname'] = $registrar['firstName'];
+            $_SESSION['lname'] = $registrar['lastName'];
+       
+            header('location:dashboard.php');
+        } else {
+            echo "<script>alert('Your account is inactive. Please contact administrator.');</script>";
+        }
+    } else {
+        echo "<script>alert('Invalid email or password.');</script>";
     }
-    else{
-    echo "<script>alert('Invalid Details.');</script>";          
-    }
-  }
-  ?>
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +50,8 @@ if(isset($_POST['login']))
         /* You can edit the padding here */
         .login-box {
             width: 400px;
-            padding: 30px; /* Modify this value to change the padding */
+            padding: 30px;
+            /* Modify this value to change the padding */
             border-radius: 8px;
             background-color: white;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -90,10 +101,14 @@ if(isset($_POST['login']))
         .login-box-msg {
             font-weight: bold;
             margin-bottom: 20px;
-            font-size: 24px; /* Increase font size */
-            font-family: 'Arial', sans-serif; /* Change font family */
-            letter-spacing: 1px; /* Add spacing between letters */
-            color: #007bff; /* Change font color */
+            font-size: 24px;
+            /* Increase font size */
+            font-family: 'Arial', sans-serif;
+            /* Change font family */
+            letter-spacing: 1px;
+            /* Add spacing between letters */
+            color: #007bff;
+            /* Change font color */
         }
 
         .input-group-text {
@@ -122,12 +137,12 @@ if(isset($_POST['login']))
             color: black;
             line-height: 1.5;
         }
-
     </style>
 </head>
+
 <body>
     <div class="left-text">
-        <h1><b>Admin</b> | CEC</h1>
+        <h1><b>Registrar</b> | CEC</h1>
         <p>Engage with your page and the world around you on Cebu Eastern College in a meaningful way.</p>
     </div>
 
@@ -137,7 +152,7 @@ if(isset($_POST['login']))
                 <!-- <p class="login-box-msg">Sign-In</p> --> <!-- The text you want to style -->
                 <form method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username" name="username" required>
+                        <input type="text" class="form-control" placeholder="Email" name="email" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -145,7 +160,7 @@ if(isset($_POST['login']))
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" name="inputpwd" required>
+                        <input type="password" class="form-control" placeholder="Password" name="password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -166,7 +181,7 @@ if(isset($_POST['login']))
                     <div class="col-12 text-center">
                         <a href="../index.html" class="btn btn-secondary btn-lg">Back</a>
                     </div>
-                </div>          
+                </div>
             </div>
         </div>
     </div>
@@ -174,4 +189,5 @@ if(isset($_POST['login']))
     <script src="../plugins/jquery/jquery.min.js"></script>
     <script src="../dist/js/adminlte.min.js"></script>
 </body>
+
 </html>

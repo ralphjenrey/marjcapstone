@@ -2,7 +2,7 @@
       <!-- Brand Logo -->
       <a href="dashboard.php" class="brand-link">
 
-        <span class="brand-text font-weight-light">CEC | Admin </span>
+        <span class="brand-text font-weight-light">CEC | Registrar </span>
       </a>
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -12,7 +12,7 @@
           <!-- picture logo here -->
 
           <div class="info">
-            <a href="#" class="d-block"><?php echo $_SESSION['uname']; ?></a>
+            <a href="#" class="d-block"><?php echo $_SESSION['fname']; ?></a>
           </div>
         </div>
 
@@ -32,41 +32,49 @@
               </a>
             </li>
 
-
-
-            <!--Manage Admin--->
-            <!-- <li class="nav-item">
+            <!--Enrollment--->
+            <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-th-list"></i>
+                <i class="nav-icon fa fa-user-plus"></i>
                 <p>
-                  Manage Admin
+                  Students
+                  <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-            </li> -->
-
-            <!--Manage Students--->
-            <li class="nav-item">
-              <a href="manage-student.php" class="nav-link">
-                <i class="nav-icon fas fa-th-list"></i>
-                <p>
-                  Manage Students
-                </p>
-              </a>
-            </li>
-
-            <!-- Manage Registrar--->
-            <li class="nav-item">
-              <a href="manage-registrar.php" class="nav-link">
-                <i class="nav-icon fas fa-th-list"></i>
-                <p>
-                  Manage Registrar
-                </p>
-              </a>  
-            </li>
+              <ul class="nav nav-treeview" style="display: none;">
 
 
+                <!--   <li class="nav-item">
+                <a href="accepted.php" class="nav-link">  
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Accepted</p>
+                </a>
+              </li> --->
 
-            <!--Profile--->
+                <li class="nav-item">
+                  <a href="student-list.php?status=pending" class="nav-link">
+                    <i class="fa fa-users nav-icon"></i>
+                    <p>Pending</p>
+                  </a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a href="student-list.php?status=enrolled" class="nav-link">
+                    <i class="fa fa-users nav-icon"></i>
+                    <p>Rejected</p>
+                  </a>
+                </li> -->
+                <li class="nav-item">
+                  <a href="student-list.php?status=rejected" class="nav-link">
+                    <i class="fa fa-users nav-icon"></i>
+                    <p>Approved</p>
+                  </a>
+                </li>
+              </ul>
+
+
+
+
+              <!--Profile--->
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-user-cog"></i>

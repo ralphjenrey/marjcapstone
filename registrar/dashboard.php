@@ -2,7 +2,7 @@
 // Database Connection
 include('includes/config.php');
 //Validating Session
-if (strlen($_SESSION['aid']) == 0) {
+if (strlen($_SESSION['rid']) == 0) {
   header('location:index.php');
 } else { ?>
   <!DOCTYPE html>
@@ -63,22 +63,6 @@ if (strlen($_SESSION['aid']) == 0) {
      WHERE status = 'enrolled'"
       );
       $totalCount = mysqli_fetch_assoc($totalStudents)['count'];
-
-      $totalStudentAccounts = mysqli_query(
-        $con,
-        "SELECT COUNT(*) as count 
-         FROM tblstudents"
-      );
-      $studentAccountCount = mysqli_fetch_assoc($totalStudentAccounts)['count'];
-
-      $totalRegistrars = mysqli_query(
-        $con,
-        "SELECT COUNT(*) as count 
-         FROM tblregistrar 
-         WHERE status = 'active'"
-      );
-      $registrarCount = mysqli_fetch_assoc($totalRegistrars)['count'];
-
       ?>
 
       <!-- Content Wrapper. Contains page content -->
@@ -116,30 +100,6 @@ if (strlen($_SESSION['aid']) == 0) {
                   <div class="card-body text-center">
                     <h1 style="font-size: 48px; color: #28a745;"><?php echo $totalCount; ?></h1>
                     <p class="text-muted">All time</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="card card-info card-outline">
-                  <div class="card-header">
-                    <h3 class="card-title">Total Student Accounts</h3>
-                  </div>
-                  <div class="card-body text-center">
-                    <h1 style="font-size: 48px; color: #17a2b8;"><?php echo $studentAccountCount; ?></h1>
-                    <p class="text-muted">All student accounts</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="card card-warning card-outline">
-                  <div class="card-header">
-                    <h3 class="card-title">Active Registrar Accounts</h3>
-                  </div>
-                  <div class="card-body text-center">
-                    <h1 style="font-size: 48px; color: #ffc107;"><?php echo $registrarCount; ?></h1>
-                    <p class="text-muted">Currently active registrars</p>
                   </div>
                 </div>
               </div>

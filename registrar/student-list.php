@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 
-if (strlen($_SESSION['aid']) == 0) {
+if (strlen($_SESSION['rid']) == 0) {
     header('location:index.php');
 } else {
     // Get and validate status parameter
@@ -19,7 +19,7 @@ if (strlen($_SESSION['aid']) == 0) {
     INNER JOIN programs p ON s.program = p.id";
     if ($status !== 'all') {
         $status = mysqli_real_escape_string($con, string: $status);
-        $query .= " WHERE status = '$status'";
+        $query .= " WHERE status2 = '$status'";
     }
 ?>
 
@@ -85,6 +85,7 @@ if (strlen($_SESSION['aid']) == 0) {
                                                     <th>Name</th>
                                                     <th>Program Enroll</th>
                                                     <th>Status</th>
+                                                    <th>Status2</th>
                                                     <th>Posting Date</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -100,11 +101,12 @@ if (strlen($_SESSION['aid']) == 0) {
                                                         <td><?php echo $result['studentNumber'] ?></td>
                                                         <td><?php echo $result['firstName'] ?> <?php echo $result['lastName'] ?></td>
                                                         <td><?php echo $result['program'] ?></td>
+                                                        <td><?= $result['status'] ?></td>
                                                         <td>
                                                             <span class="badge <?php
-                                                                                echo $result['status'] == 'enrolled' ? 'badge-success' : ($result['status'] == 'rejected' ? 'badge-danger' : 'badge-warning');
+                                                                                echo $result['status2'] == 'enrolled' ? 'badge-success' : ($result['status'] == 'rejected' ? 'badge-danger' : 'badge-warning');
                                                                                 ?>">
-                                                                <?php echo ucfirst($result['status']) ?>
+                                                                <?php echo ucfirst($result['status2']) ?>
                                                             </span>
                                                         </td>
                                                         <td><?php echo $result['updated_at'] ?></td>

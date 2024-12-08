@@ -1,6 +1,9 @@
 <?php
 include_once('../includes/config.php');
-
+session_start();
+if (strlen($_SESSION['rid']) == 0) {
+   header('location:../registrar/index.php');
+}
 // Get and validate email parameter
 $email = isset($_GET['email']) ? filter_var($_GET['email'], FILTER_SANITIZE_EMAIL) : '';
 
@@ -176,16 +179,17 @@ $email = isset($_GET['email']) ? filter_var($_GET['email'], FILTER_SANITIZE_EMAI
             if ($result) {
                // Update student status in database
                $status = ($_POST['status'] === 'rejected') ? 'pending' : $_POST['status'];
+
                $email = $_POST['email'];
                
-               $update_query = "UPDATE tblstudents SET status = ?, updated_at = NOW() WHERE email = ?";
+               $update_query = "UPDATE tblstudents SET status2 = ?, updated_at = NOW() WHERE email = ?";
                if ($stmt = mysqli_prepare($con, $update_query)) {
                    mysqli_stmt_bind_param($stmt, "ss", $status, $email);
                    
                    if (mysqli_stmt_execute($stmt)) {
                        echo "<script>
                            alert('Email sent and status updated successfully');
-                           window.location.href='../admin/student-list.php';
+                           window.location.href='../registrar/student-list.php';
                        </script>";
                    } else {
                        echo "<script>alert('Failed to update status');</script>";
