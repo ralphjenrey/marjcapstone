@@ -52,7 +52,7 @@
                   "SELECT DISTINCT p.name 
                 FROM tblstudents s 
                 JOIN programs p ON s.program = p.id 
-                WHERE s.status = 'pending' AND s.id = $student_id
+                WHERE s.status2 = 'pending' AND s.id = $student_id
                 ORDER BY p.name ASC"
                 );
 
