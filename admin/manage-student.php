@@ -237,24 +237,24 @@ if ($result && $result->num_rows > 0) {
             }]);
         }
 
-        // function deleteStudent(id) {
-        //     if (confirm('Are you sure you want to delete this student?')) {
-        //         fetch(`./php/delete-student.php?id=${id}`, {
-        //                 method: 'DELETE'
-        //             })
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 if (data.success) {
-        //                     window.location.reload();
-        //                 } else {
-        //                     alert('Error deleting student: ' + data.message);
-        //                 }
-        //             })
-        //             .catch(error => {
-        //                 alert('Error: ' + error);
-        //             });
-        //     }
-        // }
+        function deleteStudent(id) {
+            if (confirm('Are you sure you want to delete this student?')) {
+                fetch(`./php/delete-student.php?id=${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    } else {
+                        alert('Error deleting student: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Error: ' + error);
+                });
+            }
+        }
         
         $('#togglePassword').on('click', function() {
             var $passwordInput = $('#password');

@@ -207,24 +207,24 @@ if (!isset($_SESSION['aid']) && $_SESSION['aid'] == 0) {
             }]);
         }
 
-        // function deleteRegistrar(id) {
-        //     if (confirm('Are you sure you want to delete this registrar?')) {
-        //         fetch(`./php/delete-registrar.php?id=${id}`, {
-        //                 method: 'DELETE'
-        //             })
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 if (data.success) {
-        //                     window.location.reload();
-        //                 } else {
-        //                     alert('Error deleting registrar: ' + data.message);
-        //                 }
-        //             })
-        //             .catch(error => {
-        //                 alert('Error: ' + error);
-        //             });
-        //     }
-        // }
+        function deleteRegistrar(id) {
+            if (confirm('Are you sure you want to delete this registrar?')) {
+                fetch(`./php/delete-registrar.php?id=${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        } else {
+                            alert('Error deleting registrar: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error: ' + error);
+                    });
+            }
+        }
 
         document.getElementById('togglePassword').addEventListener('click', function() {
             var passwordInput = document.getElementById('password');

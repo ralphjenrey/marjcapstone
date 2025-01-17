@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    if (!ctype_alpha($firstName) || !ctype_alpha($lastName)) {
-        echo "<script>alert('First Name and Last Name should contain only alphabetic characters'); window.location.href = '../manage-registrar.php';</script>";
+    if (!preg_match("/^[a-zA-Z\s'-]+$/", $firstName) || !preg_match("/^[a-zA-Z\s'-]+$/", $lastName)) {
+        echo "<script>alert('First Name and Last Name should contain only alphabetic characters, spaces, hyphens, and apostrophes'); window.location.href = '../manage-registrar.php';</script>";
         exit();
     }
 
